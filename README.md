@@ -195,6 +195,32 @@ Clearly I was going in the wrong direction. What did I do right on model 7 that 
 
 That didn't change the model accuracy, much from model 7 (still at $0.724$). I could have kept tweaking the layers, neurons, epochs, and so on, but after 10 models I thought that was a halfway decent stopping point.
 
+## Confusion Matrices
+
+I decided to analyze the false positive and false negative rates between the models. Most of the models had an equal false positive and false negative rate, meaning that their true positive and true negative rates were also equal and equal to the overall accuracy of the model. This confirms we were right to look only at accuracy.
+
+![](graphics/pca/modelscm.png)
+
+Looking at $\mathbb{P}_{LDA}[\text{Outcome} \mid \text{Prediction}]$, the probability that we get each outcome given a label, we see:
+
+- $\mathbb{P}_{LDA}[\text{Outcome = Win} \mid \text{Prediction = Win}] = 733/992 = 74\%$
+- $\mathbb{P}_{LDA}[\text{Outcome = Win} \mid \text{Prediction = Loss}] = 260/984 = 26\%$
+- $\mathbb{P}_{LDA}[\text{Outcome = Loss} \mid \text{Prediction = Win}] = 259/992 = 26\%$
+- $\mathbb{P}_{LDA}[\text{Outcome = Loss} \mid \text{Prediction = Loss}] = 724/984 = 74\%$
+
+For the final neural net, we get something very slightly different:
+
+![](graphics/pca/model10cm.png)
+
+For our neural net, the conditional probabilities $\mathbb{P}_{NN}[\text{Outcome} \mid \text{Prediction}]$ are as follows:
+
+- $\mathbb{P}_{NN}[\text{Outcome = Win} \mid \text{Prediction = Win}] = 697/931 = 75\%$
+- $\mathbb{P}_{NN}[\text{Outcome = Win} \mid \text{Prediction = Loss}] = 296/1045 = 28\%$
+- $\mathbb{P}_{NN}[\text{Outcome = Loss} \mid \text{Prediction = Win}] = 234/931 = 25\%$
+- $\mathbb{P}_{NN}[\text{Outcome = Loss} \mid \text{Prediction = Loss}] = 749/984 = 72\%$
+
+The model's false positive rate is slightly higher than the other models, but its false negative rate is slightly lower. There is a small difference between the false positive and false negative rates, but it's not so high that overall accuracy is a bad metric.
+
 ## Takeaways
 
 **Linear discriminant analysis on 6 principal components was the clear winner** here, and **PCA raised the ceiling on accuracy for most of the models I studied** (especially SVM). LDA is one of the simpler models and works somewhat similarly to PCA, so I'm not shocked it produced the best results. I am surprised that QDA underperformed LDA by such a noticeable (but not particularly large) margin.
