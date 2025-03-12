@@ -204,8 +204,6 @@ I decided to analyze the false positive and false negative rates between the mod
 Looking at $\mathbb{P}_{LDA}[\text{Outcome} \mid \text{Prediction}]$, the probability that we get each outcome given a label, we see:
 
 - $\mathbb{P}_{LDA}[\text{Outcome = Win} \mid \text{Prediction = Win}] = 733/992 = 74\%$
-- $\mathbb{P}_{LDA}[\text{Outcome = Win} \mid \text{Prediction = Loss}] = 260/984 = 26\%$
-- $\mathbb{P}_{LDA}[\text{Outcome = Loss} \mid \text{Prediction = Win}] = 259/992 = 26\%$
 - $\mathbb{P}_{LDA}[\text{Outcome = Loss} \mid \text{Prediction = Loss}] = 724/984 = 74\%$
 
 For the final neural net, we get something very slightly different:
@@ -215,8 +213,6 @@ For the final neural net, we get something very slightly different:
 For our neural net, the conditional probabilities $\mathbb{P}_{NN}[\text{Outcome} \mid \text{Prediction}]$ are as follows:
 
 - $\mathbb{P}_{NN}[\text{Outcome = Win} \mid \text{Prediction = Win}] = 697/931 = 75\%$
-- $\mathbb{P}_{NN}[\text{Outcome = Win} \mid \text{Prediction = Loss}] = 296/1045 = 28\%$
-- $\mathbb{P}_{NN}[\text{Outcome = Loss} \mid \text{Prediction = Win}] = 234/931 = 25\%$
 - $\mathbb{P}_{NN}[\text{Outcome = Loss} \mid \text{Prediction = Loss}] = 749/984 = 72\%$
 
 The model's false positive rate is slightly higher than the other models, but its false negative rate is slightly lower. There is a small difference between the false positive and false negative rates, but it's not so high that overall accuracy is a bad metric.
