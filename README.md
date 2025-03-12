@@ -217,7 +217,7 @@ For our neural net, the conditional probabilities $\mathbb{P}_{NN}[\text{Outcome
 
 The model's false positive rate is slightly higher than the other models, but its false negative rate is slightly lower. There is a small difference between the false positive and false negative rates, but it's not so high that overall accuracy is a bad metric.
 
-## Takeaways
+## Takeaways: Data Science
 
 **Linear discriminant analysis on 6 principal components** was the clear winner here, and **PCA raised the accuracy ceiling for most of the models I studied** (especially SVM). LDA is one of the simpler models and works somewhat similarly to PCA, so I'm not shocked it produced the best results. QDA underperformed LDA by a noticeable (but not particularly large) margin likely because LDA assumes the two classes have equal covariance matrices and QDA doesn't. The classes probably do have equal covariances because League of Legends is a highly symmetric game, so the allowance of unequal variances introduced one additional opportunity for QDA to overfit, whereas the less flexible LDA model did not overfit.
 
@@ -228,3 +228,11 @@ As for neural net training, I should have started with a way lower number of epo
 I also saw that how the overfitted models tended to perform meaningfully worse; they were usually stuck around $.7$ accuracy while the models with less/minimal overfitting scored around $.724$. I wish that I had been able to find out how LDA, QDA, and LogReg got such high accuracy and been able to replicate it. (Should I have tried another model with _only_ linear layers?)
 
 I definitely got much better at data visualization: I had to teach myself how to make those 3d plots! As much as I joke about how embarrassing I am about playing League, the domain knowledge greatly helped me when doing feature engineering (mostly feature elimination) and principal component interpretation. I also got way more experience training neural nets, and I feel like I have a better grasp on what each of the individual settings actually mean for the final model. Next time, I'm going to start out with a simpler model and only add complexity as needed, and I'm going to shoot to train a neural net that works as well as the simpler models!
+
+## Takeaways: Game Strategy
+
+I don't think my analysis has revealed anything profound. If you're a League player who wants to win more, you should already know your best bet is to maximize your gold and level advantage, contest neutral objectives, and die as little as possible. What I do think my analysis has revealed is the difference between a disadvantage that can be overcome and a disadvantage that results in a devastating loss: towers. Although towers alone don't seem to have a strong correlation with winrate like gold does, it seemed to differentiate between the clusters where a team had a moderate chance of winning (where they had taken few towers) and an almost certain chance of winning (where they had taken many towers).
+
+What does this mean? The cluster analysis, to me, indicates that games where a team gets a lead and can translate that into towers means their snowballing is likely to continue: they get tower plates, they open up the map, and they can more effectively contest neutral objectives. To speculate further, it likely also means the losing team may have "collapsed", where they can no longer exert any meaningful pressure on the map, and may get repeatedly killed even under tower. If we had access to champion winrate over time data, we might notice that these are games where a mostly lategame team gets an early snowball and can outscale the enemy team by the early midgame, essentially closing any window the other team has to gain a lead.
+
+However, there are many other factors that I cannot analyze from the data provided. I would expect a coherent team composition, fair matchmaking, and a positive attitude will also greatly increase a team's winrate.
