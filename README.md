@@ -115,7 +115,7 @@ Accuracy seemed to be roughly capping out and I wasn't sure what else to tweak, 
 
 The dimensionality of our data was still relatively high even after dropping many features, so I decided to perform principal component analysis. (I also wanted to do a better job than I did on my previous project.) It took only 17 components to explain 95% of the variance.
 
-![](graphics/pca/explained variance.png)
+![](graphics/pca/explained_variance.png)
 
 I decided to manually review each of the principal components; these were my interpretations:
 
@@ -149,7 +149,7 @@ As with before, I started with KNN and QDA. However, because the number of princ
 
 I selected the combination that gave the maximum accuracy for both. After I trained the other models from before, I fixed the number of neighbors in KNN and the regularization hyperparameter to the values that yielded the best results, and then graphed all the models accuracies together:
 
-![](graphics/pca/model accuracy.png)
+![](graphics/pca/model_accuracy.png)
 
 Linear discriminant analysis got enough of an accuracy boost (from roughly $.7$ to $.737$!) with logistic regression and QDA closely behind. The support vector machine got an enormous accuracy increase, up to $.729$ from roughly $.5$ last time, which is very impressive. Random forest was alright at $.726$, with performance increasing with the number of principal components. Based on how many bumps we got from the graph at $n=5$ principal components, that's how many I chose for the neural networks.
 
