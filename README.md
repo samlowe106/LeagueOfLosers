@@ -37,7 +37,7 @@ I was also interested to see if the blue team's winrate of 49.9 was unusual: it 
 
 From there, it was on to the correlation heatmap. I multiplied all the values by 10 to make them easier to read:
 
-![](graphics/exploratory/correlation heatmap.png)
+![](graphics/exploratory/correlation_heatmap.png)
 
 We can see that the most highly correlated features are `blueGoldDiff` (.51), `blueExperienceDiff` (.49), `blueTotalGold` (.42), `blueTotalExperience` (.39), `blueAvgLevel` (.36), and `blueKills` (.34); everything else had a correlation below .3. The most negatively correlated features were the same features for the red team, so things like `redTotalGold` (-0.41), and the red features were almost exactly $-1$ times the blue features! No surprises here. Values about wards had the smallest absolute correlation, with values all less than 0.1.
 
@@ -45,7 +45,7 @@ We can see that the most highly correlated features are `blueGoldDiff` (.51), `b
 
 From there, I did a basic k-means clustering to see if the games tended to fall into similar categories. There appeared to be an elbow point at $k = 5$, so I decided to analyze those clusters.
 
-![](graphics/exploratory/inertia of kmeans clustering.png)_Inertia vs number of clusters_
+![](graphics/exploratory/inertia_of_kmeans_clustering.png)_Inertia vs number of clusters_
 
 Just looking at win rate, the clusters seemed to roughly describe:
 
