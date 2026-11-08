@@ -37,7 +37,7 @@ I was also interested to see if the blue team's winrate of 49.9 was unusual: it 
 
 From there, it was on to the correlation heatmap. I multiplied all the values by 10 to make them easier to read:
 
-![](graphics/exploratory/correlation heatmap.png)
+![](graphics/exploratory/correlation_heatmap.png)
 
 We can see that the most highly correlated features are `blueGoldDiff` (.51), `blueExperienceDiff` (.49), `blueTotalGold` (.42), `blueTotalExperience` (.39), `blueAvgLevel` (.36), and `blueKills` (.34); everything else had a correlation below .3. The most negatively correlated features were the same features for the red team, so things like `redTotalGold` (-0.41), and the red features were almost exactly $-1$ times the blue features! No surprises here. Values about wards had the smallest absolute correlation, with values all less than 0.1.
 
@@ -45,7 +45,7 @@ We can see that the most highly correlated features are `blueGoldDiff` (.51), `b
 
 From there, I did a basic k-means clustering to see if the games tended to fall into similar categories. There appeared to be an elbow point at $k = 5$, so I decided to analyze those clusters.
 
-![](graphics/exploratory/inertia of kmeans clustering.png)_Inertia vs number of clusters_
+![](graphics/exploratory/inertia_of_kmeans_clustering.png)_Inertia vs number of clusters_
 
 Just looking at win rate, the clusters seemed to roughly describe:
 
@@ -115,7 +115,7 @@ Accuracy seemed to be roughly capping out and I wasn't sure what else to tweak, 
 
 The dimensionality of our data was still relatively high even after dropping many features, so I decided to perform principal component analysis. (I also wanted to do a better job than I did on my previous project.) It took only 17 components to explain 95% of the variance.
 
-![](graphics/pca/explained variance.png)
+![](graphics/pca/explained_variance.png)
 
 I decided to manually review each of the principal components; these were my interpretations:
 
@@ -149,7 +149,7 @@ As with before, I started with KNN and QDA. However, because the number of princ
 
 I selected the combination that gave the maximum accuracy for both. After I trained the other models from before, I fixed the number of neighbors in KNN and the regularization hyperparameter to the values that yielded the best results, and then graphed all the models accuracies together:
 
-![](graphics/pca/model accuracy.png)
+![](graphics/pca/model_accuracy.png)
 
 Linear discriminant analysis got enough of an accuracy boost (from roughly $.7$ to $.737$!) with logistic regression and QDA closely behind. The support vector machine got an enormous accuracy increase, up to $.729$ from roughly $.5$ last time, which is very impressive. Random forest was alright at $.726$, with performance increasing with the number of principal components. Based on how many bumps we got from the graph at $n=5$ principal components, that's how many I chose for the neural networks.
 
